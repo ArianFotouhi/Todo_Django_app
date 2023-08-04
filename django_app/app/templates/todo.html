@@ -1,29 +1,28 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
-{% block content%}
-<div class="columns is-multiline">
-    <div class="column is-12">
-        <h1 class="title">{{todo.title}}</h1>        
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="display-4">{{ todo.title }}</h1>
+        </div>
     </div>
 
-    <div class="column is-12">
-        <strong>
-            Status:         
-        </strong>
-        {{todo.is_done}}
-        <br>
-        <strong>
-            Description: 
-        </strong>
-        {{ todo.description }}
+    <a href="{% url 'todos' %}" class="btn btn-info btn-sm">Home</a>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <strong>Status:</strong>
+            {{ todo.is_done }}
+            <br>
+            <strong>Description:</strong>
+            {{ todo.description }}
     
-        {% if not todo.is_done%}
-            <div class="column is-12">
-                <a href="{% url 'todo' todo.id %}?change_status=done">Mark as done</a>
-            </div>
-        {% endif %}
+            {% if not todo.is_done %}
+                <div class="mt-4">
+                    <a href="{% url 'todo' todo.id %}?change_status=done" class="btn btn-success">Mark as Done</a>
+                </div>
+            {% endif %}
+        </div>
     </div>
-    
 </div>
-
 {% endblock %}
