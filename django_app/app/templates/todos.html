@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="columns is-multiline">
+    
+    <div class="column is-12">
+        <h1>
+            Todos
+        </h1>    
+    </div>
+    <div class="column is-12">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="field">
+            <div class="control">
+                <button class="button is_primary">Submit </button>
+            </div>
+        </div>
+    </form>
+    </div>
+    
+    <hr>
+
+    <div class="column is-12">
+        {% for todo in todos%}
+        <p>
+            {{ todo.title }} (Done: {{todo.is_done}}) <a href="{%url 'todo' todo.id %}">View Details</a>
+        </p>
+        {% empty %}
+        <p>No todos yet...</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
